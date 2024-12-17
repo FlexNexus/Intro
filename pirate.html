@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Nexus</title>
+    <meta name="author" content="Flex Nexus">
+    <meta name="description" content="Flex Nexus - Navigating the High Seas of AI-Driven Research">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            color: #f0e68c;
+            font-family: 'Pirata One', cursive;
+        }
+        .project-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid #8b4513;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .project-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.6);
+        }
+        .glitch-text {
+            position: relative;
+            color: #ff4500;
+            text-shadow: 
+                0.05em 0 0 #ff4500, 
+                -0.05em 0 0 #ff8c00,
+                0 0.05em 0 #ff4500, 
+                0 -0.05em 0 #ff8c00;
+            animation: glitch 1s infinite alternate;
+        }
+        @keyframes glitch {
+            0% {
+                text-shadow: 
+                    0.05em 0 0 #ff4500, 
+                    -0.05em 0 0 #ff8c00,
+                    0 0.05em 0 #ff4500, 
+                    0 -0.05em 0 #ff8c00;
+            }
+            50% {
+                text-shadow: 
+                    -0.05em 0 0 #ff4500, 
+                    0.05em 0 0 #ff8c00,
+                    0 -0.05em 0 #ff4500, 
+                    0 0.05em 0 #ff8c00;
+            }
+            100% {
+                text-shadow: 
+                    0.05em 0 0 #ff4500, 
+                    -0.05em 0 0 #ff8c00,
+                    0 0.05em 0 #ff4500, 
+                    0 -0.05em 0 #ff8c00;
+            }
+        }
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, transparent, #ff4500, transparent);
+            animation: scan 5s linear infinite;
+            opacity: 0.3;
+            z-index: 50;
+        }
+        @keyframes scan {
+            0% { transform: translateY(0vh); }
+            100% { transform: translateY(100vh); }
+        }
+        .terminal-cursor::after {
+            content: '_';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap">
+</head>
+<body class="min-h-screen p-8">
+    <div class="scan-line"></div>
+    <div class="container mx-auto max-w-7xl">
+        <header class="text-center mb-12">
+            <button id="theme-toggle" class="mb-4 px-4 py-2 bg-gray-800 text-white rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1M16.24 7.76l-.71-.71M21 12h-1M16.24 16.24l-.71.71M12 21v-1M7.76 16.24l-.71-.71M3 12H4M7.76 7.76l-.71-.71"/>
+                </svg>
+            </button>
+            <h1 class="text-5xl font-bold glitch-text mb-4">
+                Flex Nexus
+            </h1>
+            <p class="text-xl text-yellow-300 terminal-cursor" id="theme-description">
+                Navigating the High Seas of AI-Driven Research
+            </p>
+            <p class="text-xl text-yellow-300" id="utc-time"></p> <!-- Live UTC Time -->
+        </header>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="project-card rounded-xl p-6 space-y-4">
+                <h2 class="text-2xl font-bold text-yellow-300">
+                    Quantum Neural Networks
+                </h2>
+                <p class="text-gray-300 mb-4">
+                    Advanced quantum computing architectures for next-generation machine learning algorithms.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-2 py-1 bg-brown-800 text-brown-200 rounded-full text-xs">
+                        Quantum Computing
+                    </span>
+                    <span class="px-2 py-1 bg-brown-800 text-brown-200 rounded-full text-xs">
+                        AI
+                    </span>
+                </div>
+                <div class="flex justify-between items-center border-t border-gray-700 pt-4">
+                    <a href="#" class="text-yellow-400 hover:text-yellow-200 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-2">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        quantum-research/networks
+                    </a>
+                    <span class="text-green-400 bg-green-900 px-2 py-1 rounded-full text-xs">
+                        Active
+                    </span>
+                </div>
+            </div>
+
+            <div class="project-card rounded-xl p-6 space-y-4">
+                <h2 class="text-2xl font-bold text-yellow-300">
+                    Neural Interface Dynamics
+                </h2>
+                <p class="text-gray-300 mb-4">
+                    Synthetic neural pathway engineering for advanced brain-computer interactions.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-2 py-1 bg-brown-800 text-brown-200 rounded-full text-xs">
+                        Neuroscience
+                    </span>
+                    <span class="px-2 py-1 bg-brown-800 text-brown-200 rounded-full text-xs">
+                        Biotech
+                    </span>
+                </div>
+                <div class="flex justify-between items-center border-t border-gray-700 pt-4">
+                    <a href="#" class="text-yellow-400 hover:text-yellow-200 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-2">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        neurotech-lab/interfaces
+                    </a>
+                    <span class="text-yellow-400 bg-yellow-900 px-2 py-1 rounded-full text-xs">
+                        In Progress
+                    </span>
+                </div>
+            </div>
+
+            <div class="project-card rounded-xl p-6 space-y-4">
+                <h2 class="text-2xl font-bold text-yellow-300">
+                    Climate Restoration AI
+                </h2>
+                <p class="text-gray-300 mb-4">
+                    Innovative AI-driven nanotechnology for environmental regeneration and carbon capture.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-2 py-1 bg-brown-800 text-brown-200 rounded-full text-xs">
+                        Climate Tech
+                    </span>
+                    <span class="px-2 py-1 bg-brown-800 text-brown-200 rounded-full text-xs">
+                        Nanotech
+                    </span>
+                </div>
+                <div class="flex justify-between items-center border-t border-gray-700 pt-4">
+                    <a href="#" class="text-yellow-400 hover:text-yellow-200 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-2">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        climate-innovation/ai-nano
+                    </a>
+                    <span class="text-blue-400 bg-blue-900 px-2 py-1 rounded-full text-xs">
+                        Emerging
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub Contribution Graph and Chart.js Bar Chart -->
+        <div class="mt-12 flex flex-col md:flex-row justify-between items-center">
+            <!-- GitHub Contribution Graph -->
+            <div class="w-full md:w-3/5 mb-8 md:mb-0">
+                <h2 class="text-3xl font-bold text-yellow-300 mb-4">Founder's GitHub Contribution Graph</h2>
+                <iframe src="https://ghchart.rshah.org/bniladridas" frameborder="0" style="width: 100%; height: 200px;"></iframe>
+            </div>
+
+            <!-- Chart.js Bar Chart -->
+            <div class="w-full md:w-2/5">
+                <h2 class="text-3xl font-bold text-yellow-300 mb-4">Top Programming Languages</h2>
+                <canvas id="languageChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
+        // Live UTC Time
+        function updateUTCTime() {
+            const utcTimeElement = document.getElementById('utc-time');
+            const now = new Date();
+            utcTimeElement.textContent = `UTC Time: ${now.toUTCString()}`;
+        }
+        setInterval(updateUTCTime, 1000);
+        updateUTCTime();
+
+        // Chart.js Bar Chart
+        const ctx = document.getElementById('languageChart').getContext('2d');
+        const languageChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['JavaScript', 'Python', 'Java', 'C++', 'Ruby'],
+                datasets: [{
+                    label: 'Top Programming Languages',
+                    data: [12, 19, 3, 5, 2],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(231, 74, 59, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(231, 74, 59, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <footer class="text-center mt-12 text-gray-400">
+        &copy; 2024 Flex Nexus. All rights reserved.
+    </footer>
+</body>
+</html>
